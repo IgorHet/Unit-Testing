@@ -11,7 +11,7 @@ public class ArrayOperations {
 
         return sum / array.length;
     }
-    public boolean isSquareMatrix(int[][] matrix) {
+    public static boolean isSquareMatrix(int[][] matrix) {
         if (matrix == null || matrix.length == 0) {
             return false;
         }

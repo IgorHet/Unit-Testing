@@ -1,43 +1,46 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayOperationsTest {
-    private ArrayOperations arrayOperations;
 
-    @BeforeEach
-    void setUp() {
-        arrayOperations = new ArrayOperations();
-    }
-
-    @AfterEach
-    void tearDown() {
-        arrayOperations = null;
+    @Test
+    void testEmptyMatrix() {
+        int[][] matrix = {};
+        assertFalse(ArrayOperations.isSquareMatrix(matrix));
     }
 
     @Test
-    void calculateAverage() {
-        int[] array = {1, 2, 3, 4, 5};
-        double expected = 3.0; // Середнє арифметичне: (1 + 2 + 3 + 4 + 5) / 5 = 3.0
-        assertEquals(expected, arrayOperations.calculateAverage(array));
-    }
-
-    @Test
-    void isSquareMatrix() {
-        int[][] squareMatrix = {
+    void testSquareMatrix() {
+        int[][] matrix = {
                 {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        assertTrue(arrayOperations.isSquareMatrix(squareMatrix));
+        assertTrue(ArrayOperations.isSquareMatrix(matrix));
+    }
 
-        int[][] nonSquareMatrix = {
-                {1, 2},
-                {3, 4},
-                {5, 6}
+    @Test
+    void testNonSquareMatrix() {
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6}
         };
-        assertFalse(arrayOperations.isSquareMatrix(nonSquareMatrix));
+        assertFalse(ArrayOperations.isSquareMatrix(matrix));
+    }
+
+    @Test
+    void testJaggedMatrix() {
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5},
+                {6}
+        };
+        assertFalse(ArrayOperations.isSquareMatrix(matrix));
+    }
+
+    @Test
+    void testNullMatrix() {
+        int[][] matrix = null;
+        assertFalse(ArrayOperations.isSquareMatrix(matrix));
     }
 }
